@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  whatsapp-service:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env  # Esto inyecta tus variables (MONGO_URI) automáticamente
+    restart: always
+    # Opcional: Si tienes Mac M1/M2/M3 y tienes problemas, descomenta esto:
+    # platform: linux/amd64
