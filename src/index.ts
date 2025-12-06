@@ -13,6 +13,10 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 const API_KEY = process.env.API_KEY; // Clave de seguridad
 
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
 // 1. Middleware de Seguridad
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const key = req.headers['x-api-key'];
@@ -97,6 +101,6 @@ app.post('/send', authMiddleware, async (req: Request, res: Response): Promise<v
 // Health check para Render (para que sepa que estamos vivos)
 app.get('/health', (req, res) => res.send('OK'));
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server running on port ${port}`);
+// });
