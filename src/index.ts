@@ -41,8 +41,16 @@ const initializeWhatsapp = async () => {
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu'
+                '--disable-dev-shm-usage', // Vital para Docker
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--disable-gpu',
+                '--disable-extensions',
+                '--disable-software-rasterizer',
+                '--mute-audio', // Ahorra memoria de buffers de audio
+                '--disable-features=site-per-process', // Ahorra mucha RAM, pero menos seguro (ok para un bot propio)
+                '--single-process' // Forzar todo en un solo proceso (Riesgoso en Windows, OK en Linux Docker limitado)
             ],
             headless: true
         }
